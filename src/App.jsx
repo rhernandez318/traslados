@@ -146,27 +146,9 @@ const App = () => {
 
   if (!user.emailVerified) {
     return (
-      <div className="p-4 max-w-md mx-auto">
-        <h1 className="text-2xl font-bold mb-4">Iniciar sesión</h1>
-        <Input placeholder="Correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} className="mb-2" />
-        <Input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} className="mb-2" />
-        <Button onClick={handleAuth}>{isRegistering ? 'Registrar' : 'Iniciar sesión'}</Button>
-        <p className="mt-2 text-sm cursor-pointer text-blue-600" onClick={() => setIsRegistering(!isRegistering)}>
-          {isRegistering ? '¿Ya tienes cuenta? Inicia sesión' : '¿No tienes cuenta? Regístrate'}
-        </p>
-      </div>
-    );
+      
   }
-      <div className="p-4 max-w-md mx-auto">
-        <h1 className="text-2xl font-bold mb-4">Iniciar sesión</h1>
-        <Input placeholder="Correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} className="mb-2" />
-        <Input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} className="mb-2" />
-        <Button onClick={handleAuth}>{isRegistering ? 'Registrar' : 'Iniciar sesión'}</Button>
-        <p className="mt-2 text-sm cursor-pointer text-blue-600" onClick={() => setIsRegistering(!isRegistering)}>
-          {isRegistering ? '¿Ya tienes cuenta? Inicia sesión' : '¿No tienes cuenta? Regístrate'}
-        </p>
-      </div>
-    );
+      
   }
 
   return (
@@ -274,4 +256,5 @@ const App = () => {
 };
 
 export default App;
+
 
