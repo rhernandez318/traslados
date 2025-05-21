@@ -194,7 +194,59 @@ const App = () => {
         </div>
       )}
 
-      {/* El resto de la aplicación permanece igual */}
+      {(userRole === 'Solicitante' || userRole === 'Administración') && (
+        <div className="mb-6 p-4 border rounded-md">
+          <h2 className="text-xl mb-2 font-semibold">Nueva Solicitud</h2>
+          <Input
+            placeholder="Unidad (ej. ABC123)"
+            value={unidad}
+            onChange={(e) => setUnidad(e.target.value)}
+            className="mb-2"
+          />
+          <Input
+            placeholder="Ubicación inicial"
+            value={ubicacion}
+            onChange={(e) => setUbicacion(e.target.value)}
+            className="mb-2"
+          />
+          <Input
+            placeholder="Asignar trasladista"
+            value={trasladista}
+            onChange={(e) => setTrasladista(e.target.value)}
+            className="mb-2"
+          />
+          <Button onClick={crearSolicitud}>Crear Solicitud</Button>
+        </div>
+      )}
+
+      <div className="grid gap-4">
+        {solicitudes.map(s => (
+          <Card key={s.id}>
+            <CardContent className="p-4">
+              <h3 className="font-semibold">Unidad: {s.unidad}</h3>
+              <p>Ubicación: {s.ubicacion}</p>
+              {s.trasladista && <p>Trasladista: {s.trasladista}</p>}
+              <Badge>{s.status}</Badge>
+              <div className="mt-4">{renderMap(s.ubicacion)}</div>
+
+              {userRole === 'Trasladista' && (
+                <div className="mt-2 space-y-2">
+                  <Select value={s.status} onValueChange={(value) => actualizarStatus(s.id, value)}>
+                    {STATUS_OPTIONS.map(opt => (
+                      <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+                    ))}
+                  </Select>
+                  <Input
+                    placeholder="Actualizar ubicación"
+                    value={s.ubicacion}
+                    onChange={(e) => actualizarUbicacion(s.id, e.target.value)}
+                  />
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };
