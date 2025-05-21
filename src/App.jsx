@@ -135,6 +135,28 @@ const App = () => {
 
   if (!user) {
     return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-center animate-pulse">
+          <h1 className="text-3xl font-bold mb-2">Sistema de Traslados</h1>
+          <p className="text-gray-500">Cargando aplicación...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user.emailVerified) {
+    return (
+      <div className="p-4 max-w-md mx-auto">
+        <h1 className="text-2xl font-bold mb-4">Iniciar sesión</h1>
+        <Input placeholder="Correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} className="mb-2" />
+        <Input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} className="mb-2" />
+        <Button onClick={handleAuth}>{isRegistering ? 'Registrar' : 'Iniciar sesión'}</Button>
+        <p className="mt-2 text-sm cursor-pointer text-blue-600" onClick={() => setIsRegistering(!isRegistering)}>
+          {isRegistering ? '¿Ya tienes cuenta? Inicia sesión' : '¿No tienes cuenta? Regístrate'}
+        </p>
+      </div>
+    );
+  }
       <div className="p-4 max-w-md mx-auto">
         <h1 className="text-2xl font-bold mb-4">Iniciar sesión</h1>
         <Input placeholder="Correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} className="mb-2" />
@@ -252,3 +274,4 @@ const App = () => {
 };
 
 export default App;
+
